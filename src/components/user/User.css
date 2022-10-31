@@ -1,0 +1,9 @@
+
+    li a:hover {
+    background-color: hsl(0, 60%, 50%);;
+    color: white;
+}
+.nav-link{
+    color: hsl(0, 60%, 50%);
+    font-weight: bold;
+}
