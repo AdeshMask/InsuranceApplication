@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './User.css';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -52,11 +52,13 @@ const UserRegistration = (props) => {
 
         console.log(object);
         UserService.addUser(object).then((res) => {
-        console.log(res);
-        alert("Data Added!!",res)
+            console.log(res);
+            alert("Data Added!!", res)
+            history.push("/login");
+        })
+    }
+    const login = () => {
         history.push("/login");
-    })       
-
     }
     return (
         <div>
@@ -89,7 +91,7 @@ const UserRegistration = (props) => {
                             <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} className="nav-link" target="iframe_a" href="">GENERATE REPORT</a>
                         </li>
                         <li style={{ color: "white" }}>
-                            <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} className="nav-link" href=" ">LOGOUT</a>
+                            <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} className="nav-link" href="/login" onclick={login}>LOGIN</a>
                         </li>
                     </ul>
                 </div>
@@ -183,8 +185,8 @@ const UserRegistration = (props) => {
                                         </div>
 
                                         <div className="form-group">
-                                            <input type="password" className="form-control" id="password" 
-                                                placeholder="Enter password" name="password"  required onChange={onNameChange} value={formValue.password} />
+                                            <input type="password" className="form-control" id="password"
+                                                placeholder="Enter password" name="password" required onChange={onNameChange} value={formValue.password} />
                                             <span id="password" style={{ color: "red" }}></span>
                                         </div>
                                         <div className="form-group">

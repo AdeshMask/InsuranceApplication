@@ -1,15 +1,19 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
-import User from './components/user/UserRegistration';
-import Login from './components/user/Login'
+import Register from './components/user/UserRegistration';
+import Login from './components/user/Login';
+import Home from "./components/ClaimInsurance/Home";
+import CreateClaim from "./components/CreateClaim/CreateClaim";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/user"><User /></Route>
+          <Route path="/register"><Register /></Route>
           <Route path="/login"><Login /></Route>
+          <Route path="/home"><Home /></Route>
+          <Route path="/create"><CreateClaim /></Route>
         </Switch>
       </Router>
     </div>

@@ -1,28 +1,32 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import img from './assests/insu1.jpg'
 import UserService from '../service/UserService';
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 export const Login = () => {
     let startValue = {
         email: "",
         password: ""
     }
+
     const [formValue, setForm] = useState(startValue)
 
     const onNameChange = (event) => {
         setForm({ ...formValue, [event.target.name]: event.target.value });
         console.log('value for', event.target.name, event.target.value);
     }
+    let history = useHistory();
     const login = async (e) => {
         e.preventDefault();
-        let data ={
+        let data = {
             email: formValue.email,
             password: formValue.password
         }
         console.log(data)
         UserService.userLogin(data).then((res) => {
             console.log(res);
-            alert("Login Successfull",res)
+            alert("Login Successfull", res)
+            history.push("/home");
         })
     }
     return (
