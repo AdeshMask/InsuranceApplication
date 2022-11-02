@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './User.css';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useParams, useHistory, NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserService from '../../components/service/UserService';
+
 
 const UserRegistration = (props) => {
     let startValue = {
@@ -15,7 +16,7 @@ const UserRegistration = (props) => {
         age: "",
         occupation: "",
         familyBackground: "",
-        KYC_File: "",
+        Kyc_File: "",
         healthCondition: "",
         vehicledata: "",
         registerddate: "",
@@ -43,7 +44,7 @@ const UserRegistration = (props) => {
             age: formValue.age,
             occupation: formValue.occupation,
             familyBackground: formValue.familyBackground,
-            KYC_File: formValue.KYC_File,
+            Kyc_File: formValue.Kyc_File,
             healthCondition: formValue.healthCondition,
             registerddate: formValue.registerddate,
             updateddate: formValue.updateddate,
@@ -68,149 +69,137 @@ const UserRegistration = (props) => {
                     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
             </head>
 
+            <div>
 
-            <body>
-                <div className="jumbotron">
-                    <h2 style={{ textAlign: "center", color: "maroon" }}>CLAIM ADJUSTER</h2>
-                </div>
-                <div className="container">
-                    <ul className="nav nav-pills nav-justified">
-                        <li style={{ color: "white" }} >
-                            <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} className="nav-link" href="" target="iframe_a"> </a>
-                        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li style={{ color: "white" }}>
-                            <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} className="nav-link" href="" target="iframe_a">CREATE NEW PROFILE</a>
-                        </li>
-                        <li style={{ color: "white" }}>
-                            <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} className="nav-link" target="iframe_a" href="">CREATE CLAIM</a>
-                        </li>
-                        <li style={{ color: "white" }}>
-                            <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} className="nav-link" target="iframe_a" href="">VIEW CLAIM</a>
-                        </li>
-                        <li style={{ color: "white" }}>
-                            <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} className="nav-link" target="iframe_a" href="">GENERATE REPORT</a>
-                        </li>
-                        <li style={{ color: "white" }}>
-                            <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} className="nav-link" href="/login" onclick={login}>LOGIN</a>
-                        </li>
-                    </ul>
-                </div>
+                <body>
+                    <div class="jumbotron">
+                        <h1 style={{ color: "maroon" }}>INSURANCE</h1>
+                        <h2 style={{ textAlign: "left" }}>Claim Registration System</h2>
+                    </div>
+
+                    <div className="container" style={{ marginTop: "90px" }}>
+                        <div className="row">
+                            <div className="col-lg-4 col-lg-5 col-md-5 offset-sm-3 center" width="100%" >
+                                <div className="card" style={{ width: "800px", alignContent: "left" }}>
+                                    <h3 className="card-header alert alert-danger" style={{ color: "maroon"}}>User Registration Form</h3>
+                                    <div className="card-body">
+                                        <form name="loginForm" action="#" onSubmit={submit}>
+
+                                            <div className="row-content">
+                                                <label htmlFor="fullName" className="label text"><b>Full Name :</b></label>
+                                                <input type="text" className="input" id="fullName" name="fullName" value={formValue.fullName}
+                                                    placeholder="Enter fullName" required onChange={onNameChange} />
+                                                <error-output className="text-error" htmlFor="name"></error-output>
+                                            </div>
 
 
-                <div className="container" style={{ marginTop: "90px" }}>
-                    <div className="row">
-                        <div className="col-lg-4 col-lg-5 col-md-5 offset-sm-3 center">
-                            <div className="card">
-                                <h3 className="card-header alert alert-danger" style={{ color: "maroon" }}>Create
-                                    Profile</h3>
-                                <div className="card-body">
-                                    <form name="loginForm" action="#" onSubmit={submit}>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="fullName"
-                                                placeholder="Enter fullName" name="fullName" value={formValue.fullName}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="email"
-                                                placeholder="Enter email" name="email" value={formValue.email}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="mobileNumber"
-                                                placeholder="Enter mobileNumber" name="mobileNumber" value={formValue.mobileNumber}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="permanentAddress"
-                                                placeholder="Enter permanentAddress" name="permanentAddress" value={formValue.permanentAddress}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="temporaryAddress"
-                                                placeholder="Enter temporaryAddress" name="temporaryAddress" value={formValue.temporaryAddress}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="age"
-                                                placeholder="Enter age" name="age" value={formValue.age}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="occupation"
-                                                placeholder="Enter occupation" name="occupation" value={formValue.occupation}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="familyBackground"
-                                                placeholder="Enter familyBackground" name="familyBackground" value={formValue.familyBackground}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="KYC_File"
-                                                placeholder="Enter KYC_File" name="KYC_File" value={formValue.KYC_File}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="healthCondition"
-                                                placeholder="Enter healthCondition" name="healthCondition" value={formValue.healthCondition}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="vehicledata"
-                                                placeholder="Enter vehicledata" name="vehicledata" value={formValue.vehicledata}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="registerddate"
-                                                placeholder="Enter registerddate" name="registerddate" value={formValue.registerddate}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" id="updateddate"
-                                                placeholder="Enter updateddate" name="updateddate" value={formValue.updateddate}
-                                                required onChange={onNameChange} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
-                                        </div>
+                                            <div className="row-content">
+                                                <label htmlFor="email" className="label text"><b>Email Id :</b></label>
+                                                <input type="text" className="form-control" id="email"
+                                                    placeholder="Enter email" name="email" value={formValue.email}
+                                                    required onChange={onNameChange} />
+                                            </div>
 
-                                        <div className="form-group">
-                                            <input type="password" className="form-control" id="password"
-                                                placeholder="Enter password" name="password" required onChange={onNameChange} value={formValue.password} />
-                                            <span id="password" style={{ color: "red" }}></span>
-                                        </div>
-                                        <div className="form-group">
-                                            <select className="custom-select" id="userRole" name="userRole" onChange={onNameChange} value={formValue.userRole}>
-                                                <option selected>Choose Roles .....</option>
-                                                <option value="CLAIM HANDLER">CLAIM HANDLER</option>
-                                                <option value="INSURED">INSURED</option>
+                                            <div className="row-content">
+                                                <label htmlFor="mobileNumber" className="label text"><b>Mobile Number :</b></label>
+                                                <input type="text" className="form-control" id="mobileNumber"
+                                                    placeholder="Enter mobileNumber" name="mobileNumber" value={formValue.mobileNumber}
+                                                    required onChange={onNameChange} />
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="permanentAddress" className="label text"><b>Permanent Address:</b></label>
+                                                <input type="text" className="form-control" id="permanentAddress"
+                                                    placeholder="Enter permanentAddress" name="permanentAddress" value={formValue.permanentAddress}
+                                                    required onChange={onNameChange} />
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="temporaryAddress" className="label text"><b>Temporary Address:</b></label>
+                                                <input type="text" className="form-control" id="temporaryAddress"
+                                                    placeholder="Enter temporaryAddress" name="temporaryAddress" value={formValue.temporaryAddress}
+                                                    required onChange={onNameChange} />
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="age" className="label text"><b>Age :</b></label>
+                                                <input type="text" className="form-control" id="age"
+                                                    placeholder="Enter age" name="age" value={formValue.age}
+                                                    required onChange={onNameChange} />
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="occupation" className="label text"><b>Occupation :</b></label>
+                                                <input type="text" className="form-control" id="occupation"
+                                                    placeholder="Enter occupation" name="occupation" value={formValue.occupation}
+                                                    required onChange={onNameChange} />
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="occupation" className="label text"><b>Occupation :</b></label>
+                                                <input type="text" className="form-control" id="familyBackground"
+                                                    placeholder="Enter familyBackground" name="familyBackground" value={formValue.familyBackground}
+                                                    required onChange={onNameChange} />
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="occupation" className="label text"><b>Occupation :</b></label>
+                                                <input type="text" className="form-control" id="Kyc_File"
+                                                    placeholder="Enter Kyc_File" name="Kyc_File" value={formValue.Kyc_File}
+                                                    required onChange={onNameChange} />
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="ealthCondition" className="label text"><b>HealthCondition :</b></label>
+                                                <input type="text" className="form-control" id="healthCondition"
+                                                    placeholder="Enter healthCondition" name="healthCondition" value={formValue.healthCondition}
+                                                    required onChange={onNameChange} />
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="vehicledata" className="label text"><b>Vehicledata :</b></label>
+                                                <input type="text" className="form-control" id="vehicledata"
+                                                    placeholder="Enter vehicledata" name="vehicledata" value={formValue.vehicledata}
+                                                    required onChange={onNameChange} />
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="registerddate" className="label text"><b>Registerddate :</b></label>
+                                                <input type="text" className="form-control" id="registerddate"
+                                                    placeholder="Enter registerddate" name="registerddate" value={formValue.registerddate}
+                                                    required onChange={onNameChange} />
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="updateddate" className="label text"><b>Updateddate :</b></label>
+                                                <input type="text" className="form-control" id="updateddate"
+                                                    placeholder="Enter updateddate" name="updateddate" value={formValue.updateddate}
+                                                    required onChange={onNameChange} />
+                                            </div>
 
-                                            </select>
-                                        </div>
+                                            <div className="row-content">
+                                                <label htmlFor="password" className="label text"><b>Password :</b></label>
+                                                <input type="password" className="form-control" id="password"
+                                                    placeholder="Enter password" name="password" required onChange={onNameChange} value={formValue.password} />
 
-                                        <input type="submit" value="Submit" className="btn btn-danger"
-                                            onclick={submit} />
-                                    </form>
-                                    <h4 style={{ color: "green" }}></h4>
-                                    <h4 style={{ color: "red" }}></h4>
+                                            </div>
+                                            <div className="row-content">
+                                                <label htmlFor="userRole" className="label text"><b>UserRole :</b></label>
+                                                <select className="custom-select" id="userRole" name="userRole" onChange={onNameChange} value={formValue.userRole}>
+                                                    <option selected>Choose Roles .....</option>
+                                                    <option value="CLAIM HANDLER">CLAIM HANDLER</option>
+                                                    <option value="INSURED">INSURED</option>
+
+                                                </select>
+                                            </div>
+
+                                            <input type="submit" value="Submit" className="btn btn-danger"
+                                                onclick={submit} />
+                                            <NavLink to='/login' ><button type="submit" className="btn ">Already User </button> </NavLink>
+                                        </form>
+                                        <h4 style={{ color: "green" }}></h4>
+                                        <h4 style={{ color: "red" }}></h4>
+                                    </div>
+                                    <div></div>
                                 </div>
-                                <div></div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </body>
+                </body>
+            </div>
         </div>
+
+
     )
 }
 

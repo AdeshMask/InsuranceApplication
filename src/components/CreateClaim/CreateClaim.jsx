@@ -1,10 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom';
+import InsuranceCategory from '../service/InsuranceCategory';
 
 const CreateClaim = () => {
     let history = useHistory();
+    const [Insurance, SetInsurancce] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = () => {
+        InsuranceCategory.getAllInsurance().then((response) => {
+            SetInsurancce(response.data.data);
+        })
+    };
+    console.log(Insurance);
+
     const logout = () => {
         history.push("/login");
+        window.localStorage.clear();
+    }
+    const view = () => {
+        history.push("/view");
     }
     return (
         <div>
@@ -28,7 +46,7 @@ const CreateClaim = () => {
                         <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} class="nav-link" target="iframe_a" href="">CREATE CLAIM</a>
                     </li>
                     <li style={{ color: "white" }}>
-                        <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} class="nav-link" target="iframe_a" href="">VIEW CLAIM</a>
+                        <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} class="nav-link" target="iframe_a" href="/view" onClick={view}>VIEW CLAIM</a>
                     </li>
                     <li style={{ color: "white" }}>
                         <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} class="nav-link" target="iframe_a" href="">GENERATE REPORT</a>
@@ -41,35 +59,30 @@ const CreateClaim = () => {
 
             <body>
                 <div class="container" style={{ marginTop: "50px" }}>
+
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Policy Number</th>
-                                <th>Policy Type</th>
-                                <th>Policy Premium</th>
-                                <th>Account Number</th>
+                                <th>Insurance Code</th>
+                                <th>Insurance Name</th>
+                                <th>Scheme</th>
+                                <th>Insurance Status</th>
                                 <th>CREATE</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1000</td>
-                                <td>AUTOMOBILE</td>
-                                <td>500000.0</td>
-                                <td>1870011501</td>
+                        {Insurance.map((insurance) =>
+                            <tbody>
+                                <tr>
+                                    <td>{insurance.insurance_code}</td>
+                                    <td>{insurance.insuranceName}</td>
+                                    <td>{insurance.insurance_Scheme}</td>
+                                    <td>{insurance.insuranceStatus}</td>
 
-                                <td><a class="btn btn-success" target="claim_a" >CREATE
-                                    CLAIM</a></td>
-                            </tr>
-                            <tr>
-                                <td>1003</td>
-                                <td>AUTOMOBILE</td>
-                                <td>800000.0</td>
-                                <td>1870011504</td>
-                                <td><a class="btn btn-success" target="claim_a">CREATE
-                                    CLAIM</a></td>
-                            </tr>
-                        </tbody>
+                                    <td><a class="btn btn-success" target="claim_a" >CREATE
+                                        CLAIM</a>
+                                    </td>
+                                </tr>
+                            </tbody>)}
                     </table>
                 </div>
             </body>
