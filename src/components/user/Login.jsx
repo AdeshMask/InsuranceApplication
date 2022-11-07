@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import img from './assests/insu1.jpg'
 import UserService from '../service/UserService';
-import { Link, useParams, useHistory,NavLink } from 'react-router-dom';
+import { Link, useParams, useHistory, NavLink } from 'react-router-dom';
 
 export const Login = () => {
     let startValue = {
@@ -51,9 +51,9 @@ export const Login = () => {
 
             </head>
             <body>
-            <div class="jumbotron">
+                <div class="jumbotron">
                     <h1 style={{ color: "maroon" }}>INSURANCE</h1>
-                    <h2 style={{textAlign:"left"}}>Claim Login System</h2> 
+                    <h2 style={{ textAlign: "left" }}>Claim Login System</h2>
                 </div>
                 <div class="container" style={{ marginTop: "90px" }}>
 
@@ -69,8 +69,8 @@ export const Login = () => {
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="email"
                                                 placeholder="Enter Email Id" name="email"
-                                                required onChange={onNameChange} value={formValue.email} /> <span id="user_check"
-                                                    style={{ color: "red" }}></span>
+                                                required onChange={onNameChange} value={formValue.email} />
+                                            <span id="user_check" style={{ color: "red" }}></span>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" id="password"

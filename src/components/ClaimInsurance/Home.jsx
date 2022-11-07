@@ -6,8 +6,19 @@ import './Home.css'
 const InsuranceClaim = () => {
     let history = useHistory();
     let role = localStorage.getItem('userRole')
+    const [isDisabled, setDisabled] = useState(true);
+
+    console.log(role)
     const create = () => {
-        history.push("/create");
+        if (role === 'Admin') {
+            setDisabled(false);
+            history.push("/create");
+        }
+        else {
+            setDisabled(true);
+            console.log("Ur not admin")
+            history.push("/home");
+        }
     }
 
     const logout = () => {
@@ -16,6 +27,10 @@ const InsuranceClaim = () => {
     }
     const view = () => {
         history.push("/view");
+    }
+    const myFunction = () => {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
     }
 
     return (
@@ -37,7 +52,7 @@ const InsuranceClaim = () => {
                                 <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} class="nav-link" href="" target="iframe_a">CREATE NEW PROFILE</a>
                             </li>
                             <li style={{ color: "white" }}>
-                                <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} class="nav-link" target="iframe_a" href="/create" onClick={create}>CREATE CLAIM</a>
+                                <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} class="nav-link" target="iframe_a" href="/create" onClick={create} disabled={isDisabled}>CREATE CLAIM</a>
                             </li>
                             <li style={{ color: "white" }}>
                                 <a style={{ color: "hsl(0, 60%, 50%)", fontWeight: "bold" }} class="nav-link" target="iframe_a" href="/view" onClick={view}>VIEW CLAIM</a>
@@ -54,8 +69,6 @@ const InsuranceClaim = () => {
                 <div>
                     <img src={img} height="550px" width="100%"
                         style={{ border: "none" }} name="iframe_a" />
-
-
                 </div>
             </body>
 

@@ -1,10 +1,9 @@
 import axios from "axios";
 
-
 class UserService {
-    baseUrl ="http://localhost:8083/insurance";
+    baseUrl ="http://localhost:8083/claim";
 
-    addUser(data) {
+    createClaim(data) {
         return axios.post(`${this.baseUrl}/create`, data);
       } 
       getAllInsurance() {

@@ -76,10 +76,9 @@ const UserRegistration = (props) => {
                         <h1 style={{ color: "maroon" }}>INSURANCE</h1>
                         <h2 style={{ textAlign: "left" }}>Claim Registration System</h2>
                     </div>
-
-                    <div className="container" style={{ marginTop: "90px" }}>
+                    <div className="container" style={{ marginTop: "70px" , marginLeft : "4rem" }}>
                         <div className="row">
-                            <div className="col-lg-4 col-lg-5 col-md-5 offset-sm-3 center" width="100%" >
+                            <div className="col-lg-4 col-lg-5 col-md-5 offset-sm-3 center" style={{ width :"100%"}} >
                                 <div className="card" style={{ width: "800px", alignContent: "left" }}>
                                     <h3 className="card-header alert alert-danger" style={{ color: "maroon"}}>User Registration Form</h3>
                                     <div className="card-body">
@@ -185,7 +184,7 @@ const UserRegistration = (props) => {
 
                                             <input type="submit" value="Submit" className="btn btn-danger"
                                                 onclick={submit} />
-                                            <NavLink to='/login' ><button type="submit" className="btn ">Already User </button> </NavLink>
+                                            <NavLink to='/login' ><button type="submit" className="btn " onClick={login}>Already User </button> </NavLink>
                                         </form>
                                         <h4 style={{ color: "green" }}></h4>
                                         <h4 style={{ color: "red" }}></h4>
