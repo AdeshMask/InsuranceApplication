@@ -1,24 +1,20 @@
 import axios from "axios";
 
+const userID = localStorage.getItem('UserId')
+const id = JSON.parse(userID);
+console.log(id)
 class UserService {
-    baseUrl ="http://localhost:8083/claim";
+    baseUrl = "http://localhost:8083/claim";
 
     createClaim(data) {
         return axios.post(`${this.baseUrl}/create`, data);
-      } 
-      getAllInsurance() {
-        return axios.get(`${this.baseUrl}/getall`);
-      }
-
-    //   getUserById(userid) {
-    //     return axios.get(`${this.baseUrl}/getuser/${userid}`,{params:{token: token}});
-    //   }
-    //   getUserEmailId(data) {
-    //     return axios.get(`${this.baseUrl}/user`, data);
-    //   }
+    }
+    getUserById() {
+        return axios.get(`${this.baseUrl}/getById/${id}`);
+    }
 
     userLogin(data) {
-      return axios.post(`${this.baseUrl}/login`,data);
+        return axios.post(`${this.baseUrl}/login`, data);
     }
 
 }

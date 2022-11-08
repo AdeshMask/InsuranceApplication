@@ -1,5 +1,6 @@
-import React from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import InsuranceClaim from '../service/CreateInsuranceClaim'
 
 
 const ViewClaim = () => {
@@ -11,6 +12,19 @@ const ViewClaim = () => {
         history.push("/login");
         window.localStorage.clear();
     }
+    const [claim, setClaim] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = () => {
+        InsuranceClaim.getUserById().then((response) => {
+            setClaim(response.data.data);
+        })
+    };
+    console.log(claim)
+
     return (
         <div>
             <head>
